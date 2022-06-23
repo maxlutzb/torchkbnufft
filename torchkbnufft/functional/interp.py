@@ -116,7 +116,7 @@ def kb_table_interp(
         image = torch.view_as_complex(image)
 
     if ssbasis is not None:
-        image = torch.tensordot(ssbasis.cfloat(),image,dims=([1], [0]))
+        image = torch.tensordot(ssbasis.cfloat(),image,dims=([0], [0]))
 
     data = KbTableInterpForward.apply(
         image, omega, tables, n_shift, numpoints, table_oversamp, offsets
@@ -175,6 +175,6 @@ def kb_table_interp_adjoint(
         image = torch.view_as_real(image)
 
     if ssbasis is not None:
-        image = torch.tensordot(ssbasis.conj().T.cfloat(),image,dims=([1], [0]))
+        image = torch.tensordot(ssbasis.conj().cfloat(),image,dims=([1], [0]))
 
     return image
