@@ -670,7 +670,7 @@ def table_interp_adjoint(
     base_offset = 1 + torch.floor(tm - numpoints.unsqueeze(-1) / 2.0).to(dtype=int_type)
 
     # initialized flattened image
-    image = torch.empty(
+    image = torch.zeros(
         size=(data.shape[0], data.shape[1], output_prod),
         dtype=dtype,
         device=device,
